@@ -1,0 +1,39 @@
+GET http://localhost:4000/populate
+content-type: application/json
+
+###
+
+POST http://localhost:4000/addDevice
+content-type: application/json
+
+{
+    "name": "Device 4",
+    "description": "New really good description",
+    "disabled": false
+}
+
+###
+
+DELETE http://localhost:4000/removeDevice
+content-type: application/json
+
+{
+    "id": 1652571466591
+}
+
+###
+
+PUT http://localhost:4000/updateDevice
+content-type: application/json
+
+  {
+    "id": 1652571808360,
+    "name": "Device 28321",
+    "description": "A great great great device!",
+    "disabled": true
+  }
+
+###
+
+GET http://localhost:4000/getAllDevices
+content-type: application/json
