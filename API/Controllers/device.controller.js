@@ -25,10 +25,11 @@ module.exports.addDevice_post = (req, res) => {
 
 module.exports.removeDevice_delete = (req, res) => {
     try {
-        let {id} = req.body
+        let {id} = req.params
         let removeDevice = deviceClass.removeDevice(id)
         res.status(200).send(removeDevice)
     } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
 }

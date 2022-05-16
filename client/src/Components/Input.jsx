@@ -1,9 +1,9 @@
 const Input = (props) => {
     return (
-        <div>
-            <div>{props.error}</div>
-            <input type="text" />
-        </div>
+        <>
+            <div className="mt-2">{props.title}</div>
+            <input className="mt-1 p-1" type="text" defaultValue={props.defaultValue} name={props.name} onChange={props.onChange} checked={undefined}/>
+        </>
     );
 }
 

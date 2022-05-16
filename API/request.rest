@@ -27,7 +27,7 @@ PUT http://localhost:4000/updateDevice
 content-type: application/json
 
   {
-    "id": 1652571808360,
+    "id": 1652571830019,
     "name": "Device 28321",
     "description": "A great great great device!",
     "disabled": true
