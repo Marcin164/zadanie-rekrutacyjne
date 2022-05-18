@@ -1,7 +1,7 @@
 const Checkbox = (props) => {
     return ( 
     <div>
-        <input className="my-4" type="checkbox" name={props.name} onChange={props.onChange} value={undefined} defaultChecked={props.defaultChecked}/><label className="">{props.title}</label>
+        <input title={props.title} className="my-4" type="checkbox" name={props.name} onClick={props.onChange} role="checkbox" value={undefined} defaultChecked={props.defaultChecked}/><label className="">{props.title}</label>
     </div> 
     );
 }

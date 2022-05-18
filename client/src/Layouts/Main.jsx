@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "axios"
 import DeviceCard from "../Components/DeviceCard";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchedDevices } from "../Redux/actions";
 
-const Main = (props) => {
+const Main = () => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
+
+    const dispatch =  useDispatch()
+    const devices = useSelector(state => state.devices.devices)
 
     useEffect(() => {
         fetchDevices()
@@ -17,36 +19,22 @@ const Main = (props) => {
         };
     }, [])
 
-    const fetchDevices = async () => {
-        console.log("Pobieranie!")
+    const fetchDevices = () => {
         try {
-            let response = await axios.get("http://localhost:4000/getAllDevices")
-
-            if(!response) throw "Cannot fetch devices!"
-            if(response.data.length < 1) setErrorMessage("No devices found!")
-
+            dispatch(fetchedDevices())
             setIsLoaded(true)
-            props.fetchedDevices(response.data)
         } catch (error) {
             setIsLoaded(false)
-            setErrorMessage(error)
+            setErrorMessage(error.message)
         }
     }
 
     if(!isLoaded) return <div className="container py-4 mt-2 text-center alert-info">Loading...</div>
     return ( 
         <div className="container mt-2">
-            {errorMessage === "" ? props.devices.map((device) => (<DeviceCard key={device.id} id={device.id} name={device.name} description={device.description} disabled={device.disabled}/>)) : <div>{errorMessage}</div>}
+            {errorMessage === "" && devices !== undefined ? devices.data.map((device) => (<DeviceCard key={device.id} id={device.id} name={device.name} description={device.description} disabled={device.disabled}/>)) : <div>{errorMessage}</div>}
         </div>
      );
 }
-
-const mapStateToProps = (state) => {
-    return {
-        devices: state.devices,
-    }
-}
-
-const mapDispatchToProps = { fetchedDevices }
  
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;
