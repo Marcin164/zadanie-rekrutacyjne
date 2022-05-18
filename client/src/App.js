@@ -6,8 +6,8 @@ function App(props) {
 
   return (
     <div className="position-relative">
-      <Topbar />
-      <Main />
+      <Topbar/>
+      <Main/>
     </div>
   );
 }
